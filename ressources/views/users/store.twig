@@ -1,0 +1,107 @@
+{% extends "layouts/default.twig" %}
+
+{% block content %}
+<!-- Section: Design Block -->
+<section class="text-center text-lg-start">
+  <style>
+    .cascading-right {
+      margin-right: -50px;
+    }
+
+    @media (max-width: 991.98px) {
+      .cascading-right {
+        margin-right: 0;
+      }
+    }
+  </style>
+
+  <!-- Jumbotron -->
+  <div class="container py-4">
+    <div class="row g-0 align-items-center">
+      <div class="col-lg-6 mb-5 mb-lg-0">
+        <div class="card cascading-right" style="
+            background: hsla(0, 0%, 100%, 0.55);
+            backdrop-filter: blur(30px);
+            ">
+          <div class="card-body p-5 shadow-5 text-center">
+            <h2 class="fw-bold mb-5">Sign up now</h2>
+            <form id="loginForm" method="POST" action="{{ route('users.login')}}">
+              <!-- 2 column grid layout with text inputs for the first and last names -->
+              <div class="row">
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    <input type="text" id="form3Example1" class="form-control {{(error.username in error) ? 'input-error' : 'input-success'}}" id="username" name="username" placeholder="Votre username" value="{{post.username}}" />
+                    <label class="form-label {{(error.username in error) ? 'text-error' : 'text-success'}}" for="form3Example1">Username</label>
+                    {{error.username | markdown }}
+                  </div>
+                </div>                
+              </div>              
+
+              <!-- Password input -->
+              <div class="col-md-6 mb-4">
+                <input type="password" id="form3Example4" class="form-control {{(error.password in error) ? 'text-error' : 'text-success'}}" />
+                <label class="form-label" class="{{(error.password in error) ? 'input-error' : ''}}" id="password" name="password" placeholder="Password" value="{{post.password}}">Password</label>
+                {{error.password | markdown}}
+              </div>              
+
+              <!-- Submit button -->
+              <button type="submit" class="btn btn-primary btn-block mb-4">
+                Sign up
+              </button>
+
+             
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 mb-5 mb-lg-0">
+        <img src="https://mdbootstrap.com/img/new/ecommerce/vertical/004.jpg" class="w-100 rounded-4 shadow-4"
+          alt="" />
+      </div>
+    </div>
+  </div>
+  <!-- Jumbotron -->
+</section>
+<!-- Section: Design Block -->
+
+
+
+
+
+
+
+
+
+{# 
+{{dump(post)}}
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-boby" style="padding:2%">
+                    <div class="card-title">Login</div><br>
+                    <form id="loginForm" method="POST" action="{{ route('users.login')}}">
+                        <div class="form-group">
+                        <label for="username" class="{{(error.username in error) ? 'text-error' : 'text-success'}}">Username</label><br><br>
+                        <input type="text" class="form-control {{(error.username in error) ? 'input-error' : 'input-success'}}" id="username" name="username" placeholder="Votre username" value="{{post.username}}"><br>
+                        {{error.username | markdown }}
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="{{(error.password in error) ? 'text-error' : 'text-success'}}">Password</label><br><br>
+                            <input type="password" class="form-control {{(error.password in error) ? 'input-error' : ''}}" id="password" name="password" placeholder="Password" value="{{post.password}}"><br>
+                            {{error.password | markdown}}
+                        </div>                     
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>            
+            </div>        
+        </div>   
+    
+    </div> #}
+
+{% endblock %}
+
+{% block js %} {% endblock %}
+
+
+
