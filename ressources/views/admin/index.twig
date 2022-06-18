@@ -1,0 +1,36 @@
+{% extends "layouts/default.twig" %}
+
+{% block content %}   
+<br><br><br>
+<div class="container">
+<h1>Administration des articles</h1><br><br>
+<a href="{{ route('admin.listComment')}}" class="btn btn-primary">Gestion des commentaires</a><br><br>     
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Titre</th>      
+      <th scope="col">Publié le</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  {% for query in queries %}
+    <tbody>
+        <tr>     
+            <th scope="row">{{query.id}}</th>
+            <td>{{query.title}}</td>       
+            <td>{{ query.created_at|date("d/m/Y à H:i") }}</td>
+            <td>
+                <a href="{{ route('admin.show', {'id':query.id})}}" class="btn btn-warning">Modifier</a>        
+                <a href="{{ route('admin.delete', {'id':query.id})}}" class="btn btn-danger">Supprimer</a>
+            </td>  
+        </tr>   
+    </tbody>
+  {% endfor %}
+</table> 
+<br><br>
+</div>
+
+
+
+ {% endblock %}

@@ -1,6 +1,7 @@
 {% extends "layouts/default.twig" %}
 
-{% block content %}
+{% block content %} 
+
 <!-- Section: Design Block -->
 <section class="text-center text-lg-start">
   <style>
@@ -30,8 +31,8 @@
             backdrop-filter: blur(30px);
             ">
           <div class="card-body p-5 shadow-5 text-center">
-            <h2 class="fw-bold mb-5">Login</h2>                       
-            <form class="was-validated" id="loginForm" method="POST" action="{{ route('users.login')}}">
+            <h2 class="fw-bold mb-5">Sign up</h2>                        
+            <form class="was-validated" id="loginForm" method="POST" action="{{ route('users.signup')}}">
               <!-- 2 column grid layout with text inputs for the first and last names -->
               <div class="row">
                 <div class="col-md-6 mb-4">
@@ -48,25 +49,36 @@
               <div class="col-md-6 mb-4">
                 <input type="password" id="password" class="form-control {{(error.password in error) ? 'input-error' : ''}}" name="password" placeholder="Password" value="{{post.password}}">
                 {{error.password | markdown}}
-                <label for="password" class= "{{(error.password in error) ? 'text-error' : 'text-success'}}">Password</label>
-                
-              </div>              
+                <label for="password" class= "{{(error.password in error) ? 'text-error' : 'text-success'}}">Password</label>                
+              </div> 
+
+             <!-- Email input -->
+              <div class="col-md-6 mb-4">
+                <input type="email" id="email" class="form-control {{(error.email in error) ? 'input-error' : ''}}" name="email" placeholder="Email" value="{{post.email}}">
+                {{error.email | markdown}}
+                <label for="email" class= "{{(error.email in error) ? 'text-error' : 'text-success'}}">Email</label>                
+              </div> 
+
+              <!-- Phone input -->
+              <div class="col-md-6 mb-4">
+                <input type="text" id="phone" class="form-control {{(error.phone in error) ? 'input-error' : ''}}" name="phone" placeholder="Phone" value="{{post.phone}}">
+                {{error.phone | markdown}}
+                <label for="email" class= "{{(error.phone in error) ? 'text-error' : 'text-success'}}">Phone</label>                
+              </div>                       
 
               <!-- Submit button -->
-              <button type="submit" class="btn btn-primary btn-block mb-4">
-                Envoyer
-              </button>
-              <a href="{{ route('users.register') }}" class="btn btn-success btn-block mb-4">Sign up</a> 
-                          
-            </form> 
-            
+              <button type="submit" class="btn btn-primary btn-block mb-4">Envoyer</button> 
+              <a href="{{ route('users.store') }}" class="btn btn-success btn-block mb-4">Login</a>
+                           
+            </form>
+             
           </div>
         </div>
       </div>
 
       <div class="col-lg-6 mb-5 mb-lg-0">
-        <img src="https://mdbootstrap.com/img/new/ecommerce/vertical/004.jpg" class="w-100 rounded-4 shadow-4"
-          alt="" />
+        <img src="/assets/img/register.jpg" class="w-100 rounded-4 shadow-4"
+          alt="phone register" />
       </div>
     </div>
   </div>
@@ -74,9 +86,5 @@
 </section>
 <!-- Section: Design Block -->
 
+
 {% endblock %}
-
-{% block js %} {% endblock %}
-
-
-

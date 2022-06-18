@@ -27,8 +27,20 @@ class Controller
             return route($name, $params);
         }));
         $twig->addGlobal('error', Errors());
-        $twig->addGlobal('post', setpost());
+        $twig->addGlobal('posts', setpost());
+        $twig->addGlobal('auth', Auth());
+
+
+
 
         echo $twig->render($path . '.twig', $datas);
+    }
+    //Ne pas permettre l'accès si tu n'est pas admin
+    //Si je ne suis pas admin, je déclenche une erreur, sinon on continue le script
+    public function denyAccessUnlessAdmin()
+    {
+        if (!isAdmin()) {
+            throw new \Exception("Vous ne pouvez pas accéder à cette page");
+        }
     }
 }

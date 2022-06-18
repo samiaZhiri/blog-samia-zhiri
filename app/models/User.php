@@ -4,7 +4,8 @@ namespace App\Models;
 
 use Model;
 
-class Post extends Model
+class User extends Model
 {
     protected $guarded = [];
+    public $timestamps = false;
 }

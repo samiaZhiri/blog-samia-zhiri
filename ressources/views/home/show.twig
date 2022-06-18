@@ -4,53 +4,62 @@
 
 
 <div class="container">
-<div class="row">
-    <div class="col-sm-12">
-        <div class="col">
-            <div class="card">
-            <div class="card mb-3">
-            <img src="{{post.img}}" class="card-img-top rounded img-fluid" alt="...">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="col">
+                <div class="card">
+                    <div class="card mb-3">
+                        <img src="{{post.img}}" class="card-img-top rounded img-fluid" alt="...">
+                    </div>
+                        <div class="card-body">
+                            <h1>{{post.title}}</h1>
+                            <p style="text-align:justify">{{post.content}}<br><br>
+                            <span style="float:right">{{post.created_at|date("d/m/Y à H:i")}}</span>
+                            </p>
+                            <p><a href="{{ route('home.index')}}">Précédent</a> | <a href="{{ route('admin.show', {'id':post.id})}}">Editer</a> | <a href="{{ route('home.delete', {'id':post.id})}}">Supprimer</a></p>
+                        </div>
+                </div>
             </div>
-        <div class="card-body">
-            <h1>{{post.title}}</h1>
-            <p style="text-align:justify">{{post.content}}<br><br>
-            <span style="float:right">{{post.created_at|date("d/m/Y à H:i")}}</span>
-            </p>
-            <p><a href="{{ route('home.index')}}">Précédent</a> | <a href="{{ route('home.delete', {'id':post.id})}}">Supprimer</a></p>
         </div>
-     </div>
-    </div>
-  </div>
-<div class="col-md-4">
-</div>
-</div>
+     </div>   
+        
 <br>
-<div class="row">
+    <div class="row">
         <div style="width:90%; margin-left:8% text-center">
-            <h3>Commentaires</h3>
+            <h3>Commentaires</h3>       
+
             {% for row in comments %}
             <div style="border: 1px solid #DCDCDC; background:#F8F8FF; padding: 1%; text-align:justify; border-radius:8px;margin:2px">
                 <span>{{ row.user }}</span><br><br>
                 <span>{{ row.content }}</span><br><br>
                 <span style="float:right">{{ row.created_at|date("d/m/Y à H:i") }}</span><br>
-                <a href="{{ route('comment.delete', {'id':row.id, 'postId':post.id})}}">Supprimer</a>
-            </div>
+                <a href="{{ route('comment.deleteComment', {'id':row.id, 'postId':post.id})}}">Supprimer</a>
+            </div>            
             {% endfor %}
+
+        
         </div>
     </div>
 
     <form method="POST" action="{{ route('home.cmtcreate')}}">
-    <hr>
-    <div class="form-group">
-        <label for="name">Nom :</label>
-        <input type="text" class="form-control" id="name" name="user" required>
-        <input type="hidden" class="form-control" id="idpost" value="{{post.id}}" name="post_id">
-    </div>
-    <div class="form-group">
-        <label for="">Votre commentaire ici :</label>
-        <textarea class="form-control" name="content" required></textarea>
-    </div><br>
-    <button type="submit" class="btn btn-primary mb-2">Envoyer</button>    
+        <hr>
+        <div class="form-group">
+            <label for="name">Nom :</label>
+            {% if auth.username != null %}
+                <input type="text" class="form-control" id="name" name="user" value="{{auth.username}}" readonly>
+            {% else %}
+                <input type="text" class="form-control" id="name" name="user" value="{{posts.user}}">
+            {% endif %}
+            
+            {{ error.user | markdown}}
+            <input type="hidden" class="form-control" id="idpost" value="{{post.id}}" name="post_id">
+        </div>
+        <div class="form-group">
+            <label for="">Votre commentaire ici :</label>
+            <textarea class="form-control" name="content">{{posts.content}}</textarea>
+            {{ error.content | markdown}}
+        </div><br>
+        <button type="submit" class="btn btn-primary mb-2">Envoyer</button>    
     </form> 
 </div>
 {% endblock %}

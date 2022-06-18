@@ -1,0 +1,31 @@
+{% extends "layouts/default.twig" %}
+
+{% block content %} 
+
+<div class="row">
+ <h2>Créer un article</h2>
+ <form method="POST" action="{{ route('admin.create') }}" enctype="multipart/form-data">
+ <hr>
+    <div class="form-group">
+        <label for="title">Titre :</label>
+        <input type="text" class="form-control" id="title" name="title">
+        {{ error.title | markdown}}
+    </div>
+    <div class="form-group">
+        <label for="images">Image :</label>
+        <input type="file" style="padding-bottom:3.5%" class="form-control" id="images" name="imagefile">
+    </div>
+    <div class="form-goup">
+        <label for="">Votre article ici :</label>
+        <textarea class="form-control" name="content" rows="10"></textarea>
+        {{ error.content | markdown}}
+    </div> 
+    <button type="submit" class="btn btn-primary mb-2">Envoyer</button>
+ </form>
+
+</div>
+
+{% endblock %}
+
+
+

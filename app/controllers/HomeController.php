@@ -21,22 +21,27 @@ class HomeController extends Controller
     public function show($id)
     {
         $post = Post::find($id);
-        $comments = Comment::where('post_id', $id)->get();
+        //Afficher les commentaires validés par l'admin        
+        $comments = Comment::where(['valid' => 1, 'post_id' => $id])->get();
         return $this->view('home.show', compact('post', 'comments'));
-    }
-    public function create(HttpRequest $request)
-    {
     }
     public function cmtcreate(HttpRequest $request)
     {
         $id = $request->name('post_id');
-        $feilds = $request->name();
+        $feilds = $request->validator([
+            'user' => ['required'],
+            'content' => ['required']
+        ]);
         Comment::create($feilds);
         return redirect('home.show', ['id' => $id]);
     }
-    public function delete($id)
+    public function delete(int $id)
     {
-        Post::destroy($id);
-        return redirect('home.index');
+        if (isAdmin()) {
+            Post::destroy($id);
+            return redirect('home.index');
+        } else {
+            return redirect('users.store');
+        }
     }
 }

@@ -4,14 +4,14 @@
 // error_reporting(0);
 class Route
 {
-    private static $request;
+    private static $request; //variable qui va me stocké les routes
 
 
     public static function get(string $path, string $action)
     {
         $routes = new Request($path, $action);
         self::$request['GET'][] = $routes;
-        return $routes;
+        return $routes; //ca me permet de faire le chainage sur mes routes "name->"
     }
     public static function post(string $path, string $action)
     {

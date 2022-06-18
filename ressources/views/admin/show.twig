@@ -1,0 +1,36 @@
+{% extends "layouts/default.twig" %}
+
+{% block content %} 
+
+<div class="row">
+    <div class="col-md-8">
+        <h2>Modifier un article</h2>
+        <form method="POST" action="{{ route('admin.update', {'id':post.id}) }}" enctype="multipart/form-data">
+        <hr>
+            <div class="form-group">
+                <label for="title">Titre :</label>
+                <input type="text" class="form-control" id="title" name="title" value="{{post.title}}">
+                {{ error.title | markdown}}
+            </div>
+            <div class="form-group">
+                <label for="images">Image :</label>
+                <input type="file" style="padding-bottom:3.5%" class="form-control" id="images" name="imagefile">
+                <input type="hidden" class="form-control" id="img" name="img" value="{{post.img}}">
+            </div>
+            <div class="form-goup">
+                <label for="">Votre article ici :</label>
+                <textarea class="form-control" name="content" rows="10">{{post.content}}</textarea>
+                {{ error.content | markdown}}
+            </div> 
+            <button type="submit" class="btn btn-primary mb-2">Envoyer</button>
+        </form>
+    </div>
+    <div class="col-md-4" style="padding-top:12%">
+        <img src="{{post.img}}" class="img-thumbnail" alt="image article">
+    </div>
+</div>
+
+{% endblock %}
+
+
+

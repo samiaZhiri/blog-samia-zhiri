@@ -6,9 +6,18 @@ use App\Models\Comment;
 
 class CommentController
 {
-    public function delete($id, $postId)
+    // public function deleteComment($id, $postId)
+    // {
+    //     if (isAdmin()) {
+    //         Comment::destroy($id);
+    //         return redirect('home.show', ['id' => $postId]);
+    //     }
+    // }
+    public function deleteComment($id)
     {
-        Comment::destroy($id);
-        return redirect('home.show', ['id' => $postId]);
+        if (isAdmin()) {
+            Comment::destroy($id);
+            return redirect('home.show');
+        }
     }
 }

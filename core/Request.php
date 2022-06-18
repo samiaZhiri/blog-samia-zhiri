@@ -37,16 +37,7 @@ class Request
     }
     public function execute()
     {
-        // $action = explode('@', $this->action);
-        // $controller = $action[0];
-        // $controller = new $controller();
-        // $method = $action[1];
 
-        // if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-        //     return isset($this->params) ? $controller->$method(implode($this->params)) : $controller->$method();
-        // } else {
-        //     return isset($this->params) ? $controller->$method($this->request, implode($this->params)) : $controller->$method($this->request);
-        // }
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $this->getRequest();
         } else {
