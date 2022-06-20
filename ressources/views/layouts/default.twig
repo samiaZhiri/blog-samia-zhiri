@@ -82,12 +82,12 @@
           <li><a href="{{ route('home.index')}}" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Mes Articles</span></a></li>
           <li><a href="{{ route('home.welcome')}}#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
           
-          {% if auth.status != null %}
+          {% if auth.role != null %}
             <li><a href="{{ route('admin.store')}}" class="nav-link scrollto"><i class="fa-solid fa-plus"></i> <span>Ajouter un article</span></a></li>
             <li><a href="{{ route('admin.index')}}" class="nav-link scrollto"><i class="fa-solid fa-list-check"></i><span>Dashboard</span></a></li>
           {% endif %}
 
-          {% if auth.status == null %}
+          {% if auth.role == null %}
             <li><a href="{{ route('users.store')}}" class="nav-link scrollto"><i class="fa-solid fa-user-plus"></i></i> <span>Login</span></a></li>
           {% else %}
             <span style="color:#FFFFFF; margin-right:10px">Welcome {{auth.username}}</span><li><a href="{{ route('users.logout')}}" class="nav-link scrollto"><i class="fa-solid fa-user-plus"></i></i> <span>Logout</span></a></li>

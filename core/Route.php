@@ -32,13 +32,19 @@ class Route
     }
     public static function url($name, $parameters = [])
     {
+        //je dois parcourir toutes mes routes (elles sont stockées dans $request) pour avoir les clés et les valeurs
+        //je parcours par rapport à la clé GET ou POST et par rapport à la valeur qui sera stockée
         foreach (self::$request as $key => $value) {
+            //ici je parcours en utilisant la clé et j'aurai un objet de la class Request "$routes=new Request()"
             foreach (self::$request[$key] as $routes) {
+                //Si la clé existe au niveau de la méthode name()
                 if (array_key_exists($name, $routes->name())) {
-                    $route = $routes->name();
-                    $path = implode($route[$name]);
+                    $route = $routes->name(); //récupère la route
+                    $path = implode($route[$name]); //récupère le path en chaine de caractère ex:/home/show
+                    //on teste si le paramètre n'est pas vide - tableau
                     if (!empty($parameters)) {
-                        foreach ($parameters as $key => $value) {
+                        foreach ($parameters as $key => $value) { //je parcoure le tableau
+                            //je vais remplacer le paramètre {id} par sa valeur dans le path
                             $path = str_replace("{{$key}}", $value, $path);
                         }
                         return '/' . $path;

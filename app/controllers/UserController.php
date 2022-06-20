@@ -41,35 +41,46 @@ class UserController extends Controller
             'password' => ['required']
         ]);
 
-        //Je connecte le user avec son username et son mot de passe 
+        //Je vérifie que le username ds la bdd correspond avec le champs username  -> on le récupère
         $user = User::where('username', '=', $request->name('username'))->first();
 
         //Faut vérifier si le username existe déja
         if (!$user) {
             die("L'utilisateur et/ou le mot de passe est incorrect");
         }
-        //ici on a un user existant, on peut vérifier le mot de passe et le connecter         
-        if (password_verify($value["password"], $user["password"])) {
-            header('Location: /');
+        //ici on a un user existant, on peut vérifier le mot de passe et le connecter 
+        //vérifier le mot de passe
+        if ($user !== null) {
+            if (password_verify($value["password"], $user["password"])) {
+                // var_dump($user->role);
+                // die();
+                //je vais stocker le role du user pour savoir si c'est un admin ou pas
+                $request->session('auth', (int) $user->role);
+                //je stocke le nom du user pour voir qu'il est connecté
+                $request->session('username', $user->username);
+                //je stocke l'id du user
+                $request->session('id', $user->id);
+                header('Location: /');
+            }
         }
 
-        //..      
-        if ($user !== null) {
-            if ($request->name('password') === $user->password) {
-                //je vais stocker le role du user 
-                $request->session('auth', (int) $user->role);
-                $request->session('username', $user->username);
-                $request->session('id', $user->id);
-                //redirection vers la page d'accueil aprés la connection                
-                header('Location: /');
-            } else {
-                echo "Mot de passe incorrect";
-            }
-        } else {
-            //Si il n'est pas connecté je le redirige vers l'ancienne url
-            //avec la fonction lastUrl ds HttpRequest
-            $request->lastRedirect();
-        }
+
+        // //..      
+        // if ($user !== null) {
+        //     //vérifier le mot de passe
+        //     if ($request->name('password') === $user->password) {
+        //         //je vais stocker le role du user pour savoir si c'est un admin ou pas
+
+        //         //redirection vers la page d'accueil aprés la connection                
+        //         header('Location: /');
+        //     } else {
+        //         echo "Mot de passe incorrect";
+        //     }
+        // } else {
+        //     //Si il n'est pas connecté je le redirige vers l'ancienne url
+        //     //avec la fonction lastUrl ds HttpRequest
+        //     $request->lastRedirect();
+        // }
     }
     //Supprimer toutes les données enregistrées en session
     public function logout()

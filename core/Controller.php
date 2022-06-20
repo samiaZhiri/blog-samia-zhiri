@@ -27,11 +27,10 @@ class Controller
             return route($name, $params);
         }));
         $twig->addGlobal('error', Errors());
+        // var_dump(Auth());
+        // exit();
         $twig->addGlobal('posts', setpost());
         $twig->addGlobal('auth', Auth());
-
-
-
 
         echo $twig->render($path . '.twig', $datas);
     }

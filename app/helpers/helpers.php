@@ -2,6 +2,7 @@
 
 use App\https\HttpRequest;
 
+//fonction qui va créer l'objet de HttpRequest, qui me retourne un objet
 function request($instance = null)
 {
     if ($instance == null) {
@@ -62,9 +63,22 @@ function Auth()
 {
     $request = request();
     return array(
-        'status' => $request->session('auth'), //pareil que $_SESSION('auth')
-        'username' => $request->session('username')
+        //si on détecte un rôle au niveau de l'array ca signifie que le user est connecté sinon pas connecté
+        'role' => $request->session('auth'), //pareil que $_SESSION('auth')
+        //je recupère le username
+        'username' => $request->session('username'),
+        'id' => $request->session('id')
     );
+}
+
+function isUser()
+{
+    $request = request();
+    if ($request->session('auth') === 0) {
+        return true;
+    } else {
+        false;
+    }
 }
 
 function isAdmin()

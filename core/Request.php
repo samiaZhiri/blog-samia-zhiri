@@ -16,6 +16,7 @@ class Request
         $this->path = trim($path, '/');
         $this->action = $action;
     }
+    //permet de nommer les routes avec le chaînage par ex :->name(home.show)
     public function name(string $name = null)
     {
         $this->routename[$name][] = $this->path;
