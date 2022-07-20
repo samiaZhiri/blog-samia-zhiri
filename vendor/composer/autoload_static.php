@@ -51,6 +51,7 @@ class ComposerStaticInit1201723a7d135cf7fef8a4d7f9a88b9b
         array (
             'Psr\\SimpleCache\\' => 16,
             'Psr\\Container\\' => 14,
+            'PHPMailer\\PHPMailer\\' => 20,
         ),
         'M' => 
         array (
@@ -140,6 +141,10 @@ class ComposerStaticInit1201723a7d135cf7fef8a4d7f9a88b9b
         'Psr\\Container\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/container/src',
+        ),
+        'PHPMailer\\PHPMailer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
         ),
         'Michelf\\' => 
         array (

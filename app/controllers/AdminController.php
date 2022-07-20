@@ -10,6 +10,7 @@ use App\https\HttpRequest;
 
 class AdminController extends Controller
 {
+    //Affiche le formulaire pour créer un article
     public function store()
     {
         return $this->view('admin.store');

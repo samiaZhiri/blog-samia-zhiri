@@ -21,6 +21,10 @@ class HttpRequest
             return $_POST[$name];
         }
     }
+    public function query(string $name, $default = null)
+    {
+        return $_GET[$name] ?? $default;
+    }
     public function except(string $name, $data = [])
     { //Si ce tableau est vide
         if (!empty($data)) { //je verifie si la clé existe ds ce tableau

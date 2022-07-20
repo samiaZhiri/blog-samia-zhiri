@@ -25,12 +25,12 @@ class InstalledVersions
 private static $installed = array (
   'root' => 
   array (
-    'pretty_version' => '1.0.0+no-version-set',
-    'version' => '1.0.0.0',
+    'pretty_version' => 'dev-master',
+    'version' => 'dev-master',
     'aliases' => 
     array (
     ),
-    'reference' => NULL,
+    'reference' => 'b6598af5ff41540f5fdfb2587aa0d57151a66288',
     'name' => 'szhir/blog-samia-zhiri',
   ),
   'versions' => 
@@ -142,6 +142,15 @@ private static $installed = array (
       array (
       ),
       'reference' => '4a54375c21eea4811dbd1149fe6b246517554e78',
+    ),
+    'phpmailer/phpmailer' => 
+    array (
+      'pretty_version' => 'v6.6.3',
+      'version' => '6.6.3.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '9400f305a898f194caff5521f64e5dfa926626f3',
     ),
     'psr/container' => 
     array (
@@ -292,12 +301,12 @@ private static $installed = array (
     ),
     'szhir/blog-samia-zhiri' => 
     array (
-      'pretty_version' => '1.0.0+no-version-set',
-      'version' => '1.0.0.0',
+      'pretty_version' => 'dev-master',
+      'version' => 'dev-master',
       'aliases' => 
       array (
       ),
-      'reference' => NULL,
+      'reference' => 'b6598af5ff41540f5fdfb2587aa0d57151a66288',
     ),
     'twig/twig' => 
     array (

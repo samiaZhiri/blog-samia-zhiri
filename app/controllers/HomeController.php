@@ -12,7 +12,9 @@ class HomeController extends Controller
     //Afficher la page welcome
     public function welcome()
     {
-        return $this->view('home.welcome');
+        $request = request();
+        $message = $request->session("message");
+        return $this->view('home.welcome', ["message" => $message]);
     }
     //Afficher tous les articles du plus récent au plus ancien
     public function index()
@@ -37,13 +39,14 @@ class HomeController extends Controller
             // 'user' => ['required'],
             'content' => ['required']
         ]);
-        if (isUser()) {
+
+        if (isUser() || isAdmin()) {
             //récupére l'id de l'utilisateur connecté
             //et ajoute l'id dans la session
-            $feilds['user_id'] = $request->session('id');
-
+            $feilds['user_id'] = (int)$request->session('id');
+            // var_dump($feilds);
             Comment::create($feilds);
-            //je redirige le user sur la meme page
+            //je redirige le user sur la même page
             return redirect('home.show', ['id' => $id]);
         } else {
             return redirect('users.store');

@@ -17,9 +17,9 @@ class UserController extends Controller
     {
         return $this->view('users.register');
     }
+    //L'inscription d'un utilisateur
     public function signup(HttpRequest $request)
     {
-
         $value = $request->validator([
             'username' => ['required'],
             'password' => ['required'],

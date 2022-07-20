@@ -30,10 +30,10 @@
 
             {% for row in comments %}
             <div style="border: 1px solid #DCDCDC; background:#F8F8FF; padding: 1%; text-align:justify; border-radius:8px;margin:2px">
-                <span>{{ row.user }}</span><br><br>
+                {# <span>{{ row.user }}</span><br><br> #}
                 <span>{{ row.content }}</span><br><br>
                 <span style="float:right">{{ row.created_at|date("d/m/Y à H:i") }}</span><br>
-                <a href="{{ route('comment.deleteComment', {'id':row.id, 'postId':post.id})}}">Supprimer</a>
+                {# <a href="{{ route('comment.deleteComment', {'id':row.id, 'postId':post.id})}}">Supprimer</a> #}
             </div>            
             {% endfor %}
 
@@ -44,12 +44,12 @@
     <form method="POST" action="{{ route('home.cmtcreate')}}">
         <hr>
         <div class="form-group">
-            <label for="name">Nom :</label>
+            {# <label for="name">Nom :</label>
             {% if auth.username != null %}
                 <input type="text" class="form-control" id="name" name="user" value="{{auth.username}}" readonly>
             {% else %}
                 <input type="text" class="form-control" id="name" name="user" value="{{posts.user}}">
-            {% endif %}
+            {% endif %} #}
             
             {{ error.user | markdown}}
             <input type="hidden" class="form-control" id="idpost" value="{{post.id}}" name="post_id">

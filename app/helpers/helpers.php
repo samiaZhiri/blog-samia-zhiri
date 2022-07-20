@@ -64,17 +64,18 @@ function Auth()
     $request = request();
     return array(
         //si on détecte un rôle au niveau de l'array ca signifie que le user est connecté sinon pas connecté
-        'role' => $request->session('auth'), //pareil que $_SESSION('auth')
+        'role' => (int) $request->session('auth'), //pareil que $_SESSION('auth')
         //je recupère le username
         'username' => $request->session('username'),
-        'id' => $request->session('id')
+        'id' => $request->session('id'),
+        'status' => $request->session('id') != null
     );
 }
 
 function isUser()
 {
     $request = request();
-    if ($request->session('auth') === 0) {
+    if ((int)$request->session('auth') === 0) {
         return true;
     } else {
         false;
@@ -84,10 +85,10 @@ function isUser()
 function isAdmin()
 {
     $request = request();
-    if ($request->session('auth') === 1) {
+    if ((int)$request->session('auth') === 1) {
         return true;
     } else {
         //sinon je le renvoi sur la page formulaire login
-        return redirect('users.store');
+        return false;
     }
 }

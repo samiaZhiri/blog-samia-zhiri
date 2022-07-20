@@ -21,6 +21,7 @@
         "twig/twig": "3.0",
         "illuminate/database": "^8.83",
         "illuminate/events": "^8.83",
-        "michelf/php-markdown": "^1.9"
+        "michelf/php-markdown": "^1.9",
+        "phpmailer/phpmailer": "^6.6"
     }
 }
